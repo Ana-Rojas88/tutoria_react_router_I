@@ -1,25 +1,9 @@
 import { useEffect, useState } from "react";
+import { useApiContext } from "../context/ApiContext";
 
 const Home = () => {
-  const [productos, setProductos] = useState([]);
 
-  const getProductos = async () => {
-    try {
-      const response = await fetch(
-        "https://dummyjson.com/products?limit=12"
-      );
-
-      const data = await response.json();
-
-      setProductos(data.products);
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
-  useEffect(() => {
-    getProductos();
-  }, []);
+  const { productos } = useApiContext()
 
   return (
     <main className="home">
